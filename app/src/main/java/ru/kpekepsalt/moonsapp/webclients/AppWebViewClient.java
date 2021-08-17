@@ -1,23 +1,29 @@
 package ru.kpekepsalt.moonsapp.webclients;
 
+import android.content.Context;
 import android.graphics.Bitmap;
 import android.util.Log;
 import android.view.View;
 import android.webkit.CookieManager;
+import android.webkit.ValueCallback;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
+
+import ru.kpekepsalt.moonsapp.Application;
 
 
 public class AppWebViewClient extends WebViewClient {
 
     private final WebView webView;
     private final View splash;
+    private final Context context;
 
-    public AppWebViewClient(WebView webView, View splash)
+    public AppWebViewClient(Context context, WebView webView, View splash)
     {
         this.webView = webView;
         this.splash = splash;
+        this.context = context;
 
         CookieManager cookieManager = CookieManager.getInstance();
         cookieManager.setAcceptCookie(true);
@@ -44,6 +50,13 @@ public class AppWebViewClient extends WebViewClient {
     public void onPageFinished(WebView webView, String url) {
         this.webView.setVisibility(View.VISIBLE);
         splash.setVisibility(View.GONE);
+        String token = Application.getInstance(context).getFirebaseToken();
+        if(!token.isEmpty())
+        {
+            webView.evaluateJavascript("saveFirebaseToken('" + token + "');", value -> {
+
+            });
+        }
     }
 
 

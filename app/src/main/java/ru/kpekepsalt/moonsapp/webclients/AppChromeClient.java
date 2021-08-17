@@ -33,6 +33,14 @@ public class AppChromeClient extends WebChromeClient {
 
     @Override
     public boolean onJsConfirm(WebView view, String url, String message, JsResult result) {
-        return super.onJsConfirm(view, url, message, result);
+        application.buildConfirm(context,
+                context.getResources().getString(R.string.confirm_title),
+                message,
+                context.getResources().getString(R.string.alert_button),
+                context.getResources().getString(R.string.confirm_deny),
+                result::confirm,
+                result::cancel
+        ).show();
+        return true;
     }
 }

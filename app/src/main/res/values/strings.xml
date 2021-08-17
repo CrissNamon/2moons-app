@@ -2,4 +2,6 @@
     <string name="app_name">moonsapp</string>
     <string name="alert_title">Warning</string>
     <string name="alert_button">OK</string>
+    <string name="confirm_title">Confirmation</string>
+    <string name="confirm_deny">Cancel</string>
 </resources>

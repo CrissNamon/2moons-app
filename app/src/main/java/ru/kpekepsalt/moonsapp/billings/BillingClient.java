@@ -42,6 +42,7 @@ public class BillingClient implements PurchasesUpdatedListener, BillingClientSta
                     .setListener(
                          this
                     )
+                    .enablePendingPurchases()
                     .build();
             billingClient.startConnection(
                     this
@@ -108,12 +109,14 @@ public class BillingClient implements PurchasesUpdatedListener, BillingClientSta
     }
 
     private void queryPurchases() {
+        /*
         billingClient.queryPurchasesAsync(com.android.billingclient.api.BillingClient.SkuType.INAPP, (billingResult, list) -> {
             for(Purchase purchase : list)
             {
                 onComplete.action(purchase);
             }
         });
+         */
     }
 
     public Map<String, SkuDetails> getmSkuDetailsMap() {
