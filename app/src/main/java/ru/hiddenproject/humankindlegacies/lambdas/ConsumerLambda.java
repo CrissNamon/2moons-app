@@ -1,4 +1,4 @@
-package ru.kpekepsalt.moonsapp.lambdas;
+package ru.hiddenproject.humankindlegacies.lambdas;
 
 public interface ConsumerLambda {
     static void empty(){}

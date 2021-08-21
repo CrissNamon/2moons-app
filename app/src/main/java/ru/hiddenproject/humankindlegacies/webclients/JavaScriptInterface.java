@@ -1,4 +1,4 @@
-package ru.kpekepsalt.moonsapp.webclients;
+package ru.hiddenproject.humankindlegacies.webclients;
 
 import android.app.Activity;
 import android.content.Context;
@@ -6,8 +6,8 @@ import android.util.Log;
 import android.webkit.JavascriptInterface;
 import android.webkit.WebView;
 
-import ru.kpekepsalt.moonsapp.Application;
-import ru.kpekepsalt.moonsapp.billings.BillingClientNullException;
+import ru.hiddenproject.humankindlegacies.Application;
+import ru.hiddenproject.humankindlegacies.billings.BillingClientNullException;
 
 public class JavaScriptInterface {
 
@@ -40,6 +40,18 @@ public class JavaScriptInterface {
     public void saveUserId(int id)
     {
         application.saveUserID(id);
+    }
+
+    @JavascriptInterface
+    public void firebaseError()
+    {
+        application.setFirebaseTokenSaved(false);
+    }
+
+    @JavascriptInterface
+    public void log(String message)
+    {
+        Log.d("HumankindLegacies", message);
     }
 
 }

@@ -1,11 +1,9 @@
-package ru.kpekepsalt.moonsapp;
+package ru.hiddenproject.humankindlegacies;
 
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.SharedPreferences;
-import android.widget.EditText;
 
-import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 import com.android.billingclient.api.Purchase;
@@ -13,18 +11,16 @@ import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
 import com.google.firebase.messaging.FirebaseMessaging;
 
 import java.util.HashMap;
 import java.util.Map;
 
-import ru.kpekepsalt.moonsapp.billings.BillingClient;
-import ru.kpekepsalt.moonsapp.billings.BillingClientNullException;
-import ru.kpekepsalt.moonsapp.lambdas.ConsumerLambda;
-import ru.kpekepsalt.moonsapp.lambdas.ParamLambda;
-import ru.kpekepsalt.moonsapp.lambdas.VoidLambda;
+import ru.hiddenproject.humankindlegacies.billings.BillingClient;
+import ru.hiddenproject.humankindlegacies.billings.BillingClientNullException;
+import ru.hiddenproject.humankindlegacies.lambdas.ConsumerLambda;
+import ru.hiddenproject.humankindlegacies.lambdas.ParamLambda;
+import ru.hiddenproject.humankindlegacies.lambdas.VoidLambda;
 
 public class Application {
 
@@ -34,8 +30,9 @@ public class Application {
 
     public static final String APP_URL = "http://10.0.2.2:8080/game.php?page=overview";
     public static final String APP_BILLING_URL = "http://10.0.2.2:8080/game.php?page=merchant";
+    public static final String APP_MESSAGES_URL = "http://10.0.2.2:8080/game.php?page=messages";
 
-    public static final String APP_PREFERENCES = "2moons_settings";
+    public static final String APP_PREFERENCES = "humankind_settings";
     public static final String APP_PREFERENCES_USER_ID = "user_id";
 
     private Context context;
@@ -47,10 +44,13 @@ public class Application {
     private SharedPreferences sharedPreferences;
 
     private String firebaseToken;
+    private boolean firebaseTokenSaved;
 
     private Application(Context c){
         context = c;
         requestQueue = Volley.newRequestQueue(c);
+        firebaseToken = "";
+        firebaseTokenSaved = false;
         sharedPreferences = context.getSharedPreferences(APP_PREFERENCES, Context.MODE_PRIVATE);
         FirebaseMessaging.getInstance()
                 .getToken()
@@ -158,6 +158,14 @@ public class Application {
     public String getFirebaseToken()
     {
         return firebaseToken;
+    }
+
+    public boolean isFirebaseTokenSaved() {
+        return firebaseTokenSaved;
+    }
+
+    public void setFirebaseTokenSaved(boolean firebaseTokenSaved) {
+        this.firebaseTokenSaved = firebaseTokenSaved;
     }
 }
 

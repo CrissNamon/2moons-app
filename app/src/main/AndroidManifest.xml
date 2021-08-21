@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="ru.kpekepsalt.moonsapp">
+    package="ru.hiddenproject.humankindlegacies">
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="com.android.vending.BILLING"/>
@@ -13,7 +13,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.MaterialComponents.NoActionBar">
         <activity
-            android:name=".activities.MainActivity"
+            android:name="ru.hiddenproject.humankindlegacies.activities.MainActivity"
             android:screenOrientation="userLandscape"
             >
             <intent-filter>
@@ -24,7 +24,7 @@
         </activity>
 
         <service
-            android:name=".services.MessagingService"
+            android:name="ru.hiddenproject.humankindlegacies.services.MessagingService"
             android:exported="false">
             <intent-filter>
                 <action android:name="com.google.firebase.MESSAGING_EVENT" />

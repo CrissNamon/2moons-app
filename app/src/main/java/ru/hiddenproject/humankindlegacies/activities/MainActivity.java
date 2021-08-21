@@ -1,16 +1,17 @@
-package ru.kpekepsalt.moonsapp.activities;
+package ru.hiddenproject.humankindlegacies.activities;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import im.delight.android.webview.AdvancedWebView;
-import ru.kpekepsalt.moonsapp.Application;
-import ru.kpekepsalt.moonsapp.R;
-import ru.kpekepsalt.moonsapp.webclients.AppChromeClient;
-import ru.kpekepsalt.moonsapp.webclients.AppWebViewClient;
-import ru.kpekepsalt.moonsapp.webclients.JavaScriptInterface;
+import ru.hiddenproject.humankindlegacies.Application;
+import ru.hiddenproject.humankindlegacies.R;
+import ru.hiddenproject.humankindlegacies.webclients.AppChromeClient;
+import ru.hiddenproject.humankindlegacies.webclients.AppWebViewClient;
+import ru.hiddenproject.humankindlegacies.webclients.JavaScriptInterface;
 
 public class MainActivity extends AppCompatActivity{
 
@@ -39,8 +40,15 @@ public class MainActivity extends AppCompatActivity{
                 "Android"
         );
 
-        webView.loadUrl(Application.APP_URL);
         application.setupBilling();
+
+        Intent intent = getIntent();
+        boolean isFromNotification = intent.getBooleanExtra("notification", false);
+        if(isFromNotification){
+            webView.loadUrl(Application.APP_MESSAGES_URL);
+        }else {
+            webView.loadUrl(Application.APP_URL);
+        }
     }
 
     @Override

@@ -1,4 +1,4 @@
-package ru.kpekepsalt.moonsapp.billings;
+package ru.hiddenproject.humankindlegacies.billings;
 
 import android.app.Activity;
 import android.content.Context;
@@ -19,7 +19,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import ru.kpekepsalt.moonsapp.lambdas.ParamLambda;
+import ru.hiddenproject.humankindlegacies.lambdas.ParamLambda;
 
 public class BillingClient implements PurchasesUpdatedListener, BillingClientStateListener {
 

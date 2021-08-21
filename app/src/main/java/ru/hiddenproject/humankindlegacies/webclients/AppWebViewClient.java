@@ -1,16 +1,17 @@
-package ru.kpekepsalt.moonsapp.webclients;
+package ru.hiddenproject.humankindlegacies.webclients;
 
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.util.Log;
 import android.view.View;
 import android.webkit.CookieManager;
-import android.webkit.ValueCallback;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 
-import ru.kpekepsalt.moonsapp.Application;
+import androidx.appcompat.widget.AppCompatButton;
+
+import ru.hiddenproject.humankindlegacies.Application;
 
 
 public class AppWebViewClient extends WebViewClient {
@@ -18,12 +19,15 @@ public class AppWebViewClient extends WebViewClient {
     private final WebView webView;
     private final View splash;
     private final Context context;
+    private final Application application;
 
     public AppWebViewClient(Context context, WebView webView, View splash)
     {
         this.webView = webView;
         this.splash = splash;
         this.context = context;
+
+        application = Application.getInstance(context);
 
         CookieManager cookieManager = CookieManager.getInstance();
         cookieManager.setAcceptCookie(true);
@@ -50,12 +54,23 @@ public class AppWebViewClient extends WebViewClient {
     public void onPageFinished(WebView webView, String url) {
         this.webView.setVisibility(View.VISIBLE);
         splash.setVisibility(View.GONE);
-        String token = Application.getInstance(context).getFirebaseToken();
-        if(!token.isEmpty())
+        String token = application.getFirebaseToken();
+        if(!token.isEmpty() && !application.isFirebaseTokenSaved())
         {
-            webView.evaluateJavascript("saveFirebaseToken('" + token + "');", value -> {
-
+            webView.evaluateJavascript("javascript:saveFirebaseToken('" + token + "');", value -> {
+                try {
+                    int status = Integer.parseInt(value);
+                    if(status == 0)
+                    {
+                        application.setFirebaseTokenSaved(true);
+                    }
+                }catch (NumberFormatException e)
+                {
+                    Log.d("HumankindLegacies", "FIREBASE TOKEN WAS NOT SAVED");
+                }
             });
+        }else{
+            Log.d("HumankindLegacies", "TOKEN EMPTY");
         }
     }
 

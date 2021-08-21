@@ -1,4 +1,4 @@
-package ru.kpekepsalt.moonsapp.billings;
+package ru.hiddenproject.humankindlegacies.billings;
 
 public class BillingClientNullException extends Exception{
 

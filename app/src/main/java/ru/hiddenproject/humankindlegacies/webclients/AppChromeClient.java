@@ -1,12 +1,12 @@
-package ru.kpekepsalt.moonsapp.webclients;
+package ru.hiddenproject.humankindlegacies.webclients;
 
 import android.content.Context;
 import android.webkit.JsResult;
 import android.webkit.WebChromeClient;
 import android.webkit.WebView;
 
-import ru.kpekepsalt.moonsapp.Application;
-import ru.kpekepsalt.moonsapp.R;
+import ru.hiddenproject.humankindlegacies.Application;
+import ru.hiddenproject.humankindlegacies.R;
 
 public class AppChromeClient extends WebChromeClient {
 
